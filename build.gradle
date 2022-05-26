@@ -1,5 +1,5 @@
 plugins {
-    id 'java'
+    id 'java-library'
 }
 
 group 'org.mcmodlauncher'
@@ -9,9 +9,17 @@ repositories {
     mavenCentral()
 }
 
+sourceSets {
+    log4j
+}
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    log4jImplementation sourceSets.main.output
+    log4jImplementation 'org.apache.logging.log4j:log4j-api:2.17.2'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
+    testImplementation sourceSets.log4j.output
+    testImplementation 'org.apache.logging.log4j:log4j-api:2.17.2'
+    testRuntimeOnly 'org.apache.logging.log4j:log4j-core:2.17.2'
 }
 
 test {
